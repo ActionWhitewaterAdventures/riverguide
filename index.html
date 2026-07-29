@@ -1,13 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google Analytics (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3YF6DJEMP3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-3YF6DJEMP3');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Action Whitewater Adventures | Main Salmon River Rafting</title>
-    
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+    <!-- Primary SEO Title & Meta Description -->
+    <title>Action Whitewater Adventures | Main Salmon River Rafting Trips</title>
+    <meta name="description" content="Experience world-class Main Salmon River rafting trips with Action Whitewater Adventures. Book multi-day wilderness white water rafting expeditions in Idaho today!">
+    <link rel="canonical" href="https://www.riverguide.com/">
+
+    <!-- Favicon & Device Icons -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.png">
+
+    <!-- Open Graph / iOS iMessage Preview Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.riverguide.com/">
+    <meta property="og:title" content="Action Whitewater Adventures | Main Salmon River Rafting Trips">
+    <meta property="og:description" content="Book unforgettable multi-day wilderness whitewater rafting trips down Idaho's legendary Main Salmon River.">
+    <meta property="og:image" content="https://www.riverguide.com/images/cover-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Whitewater rafting guides navigating rapids on the Main Salmon River">
+    <meta property="og:site_name" content="Action Whitewater Adventures">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Main Salmon River Rafting Trips | Action Whitewater Adventures">
+    <meta name="twitter:description" content="Book unforgettable multi-day wilderness whitewater rafting trips down Idaho's legendary Main Salmon River.">
+    <meta name="twitter:image" content="https://www.riverguide.com/images/cover-image.jpg">
+
+    <!-- Preconnect Performance & Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <!-- Schema.org Structured Data (JSON-LD) for Search Engines -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TravelAgency",
+      "name": "Action Whitewater Adventures",
+      "url": "https://www.riverguide.com/",
+      "logo": "https://www.riverguide.com/images/logo.png",
+      "image": "https://www.riverguide.com/images/cover-image.jpg",
+      "description": "Premier guided multi-day wilderness whitewater rafting trips on Idaho's Main Salmon River.",
+      "areaServed": {
+        "@type": "AdministrativeArea",
+        "name": "Salmon River, Idaho"
+      },
+      "knowsAbout": [
+        "River Rafting",
+        "Salmon River Rafting",
+        "Main Salmon River Rafting",
+        "Whitewater Rafting Trips",
+        "Wilderness Expeditions"
+      ]
+    }
+    </script>
+</head>
     
     <style>
         /* --- BRAND COLOR & DESIGN SYSTEM --- */
@@ -985,9 +1046,9 @@
 
     <header class="hero-section">
         <div class="hero-video-bg">
-            <video autoplay loop muted playsinline poster="/images/AWAheader3.jpg">
+            <video autoplay loop muted playsinline poster="/images/TripDetailsParallax.jpg">
                 <source src="/images/AWAheader.mp4" type="video/mp4">
-                <source src="/images/AWAheader.jpg" type="image/jpeg">
+                <source src="/images/TripDetailsParallax.jpg" type="image/jpeg">
             </video>
         </div>
         <div class="hero-overlay"></div>
@@ -1220,7 +1281,7 @@
         const closeBtn = document.getElementById('closeModalBtn');
         const modalEl = document.getElementById('videoModalElement');
         const framePlayer = document.getElementById('modalFramePlayer');
-        const targetedVideoUrl = "https://www.youtube.com/embed/ZE48XgR0t8k?autoplay=1&rel=0";
+        const targetedVideoUrl = "https://www.youtube.com/embed/gEXNzgIcfs8?autoplay=1&rel=0";
 
         openBtn.addEventListener('click', () => {
             framePlayer.src = targetedVideoUrl;
