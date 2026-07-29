@@ -1666,6 +1666,53 @@
                 display: block;
             }
         }
+        /* Base Desktop Styles */
+        .parallax-section {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: #ffffff;
+        }
+
+        .trip-prep-parallax {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.72)), url('/images/TripDetailsParallax.jpg');
+        }
+
+        .trip-prep-parallax .section-header {
+            text-align: center;
+        }
+
+        .trip-prep-parallax .section-tag {
+            color: #4fd1c5;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.85);
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .trip-prep-parallax .section-title {
+            color: #ffffff;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .trip-prep-parallax .section-desc {
+            color: #f1f5f9;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85);
+            max-width: 650px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Mobile Fix */
+        @media (max-width: 992px) {
+            .parallax-section {
+                background-attachment: scroll;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1948,13 +1995,14 @@
         </div>
     </section>
 
-    <section class="content-section alt-bg parallax-section" style="background-image: linear-gradient(rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.72)), url('/images/TripDetailsParallax.jpg'); background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; color: #ffffff;">
+<section class="content-section alt-bg parallax-section trip-prep-parallax">
     <div class="container">
-        <div class="section-header animate-scroll-in" style="text-align: center;">
-        <span class="section-tag" style="color: #4fd1c5; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.85); font-weight: 700; display: inline-block; margin-bottom: 8px;">Trip Preparation</span>
-        <h2 class="section-title" style="color: #ffffff; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9); font-weight: 800; margin-bottom: 12px;">What Is Provided & What To Bring</h2>
-        <p style="color: #f1f5f9; text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85); max-width: 650px; margin: 0 auto; font-size: 1.1rem; line-height: 1.6;">We supply all essential river and camping equipment so you can travel light and hassle-free.</p>
+        <div class="section-header animate-scroll-in">
+            <span class="section-tag">Trip Preparation</span>
+            <h2 class="section-title">What Is Provided & What To Bring</h2>
+            <p class="section-desc">We supply all essential river and camping equipment so you can travel light and hassle-free.</p>
         </div>
+
 
         <div class="included-grid">
         <div class="included-card provided-box animate-scroll-in">
