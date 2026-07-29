@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Packages & River Shuttles | Action Whitewater Adventures</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- BRAND COLOR & DESIGN SYSTEM --- */
+        :root {
+            --forest-black: #08140c;
+            --forest-dark: #122619;
+            --forest-mid: #1b3b22;
+            --forest-light: #2d5a37;
+            --river-deep: #1d4e68;
+            --river-clear: #3a7d9b;
+            --sand-bg: #f5f7f4;
+            --sand-card: #eef2ed;
+            --white: #ffffff;
+            --text-dark: #1c2620;
+            --text-muted: #4a5750;
+            --transition-clean: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+            --transition-fade: opacity 0.4s ease, visibility 0.4s ease;
+        }
+
+        /* --- GLOBAL LAYOUT STYLES --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: 'Outfit', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--sand-bg);
+            overflow-x: hidden;
+        }
+
+        body {
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        p, li {
+            font-family: 'Lora', serif;
+            font-size: 1.05rem;
+            line-height: 1.75;
+            color: var(--text-muted);
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            color: var(--forest-dark);
+            letter-spacing: -0.02em;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        /* --- TOP INFORMATION BAR --- */
+        .utility-bar {
+            background-color: var(--forest-black);
+            color: var(--sand-bg);
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            z-index: 100;
+        }
+        .utility-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 40px;
+        }
+        .utility-bar a {
+            color: var(--sand-bg);
+            text-decoration: none;
+            margin-left: 20px;
+            transition: var(--transition-clean);
+        }
+        .utility-bar a:hover {
+            color: var(--white);
+            text-decoration: underline;
+        }
+
+        /* --- MAIN NAVIGATION BAR --- */
+        .nav-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 99;
+            background: linear-gradient(to bottom, rgba(8, 20, 12, 1), rgba(8, 20, 12, 0));
+            padding-top: 40px;
+            transition: padding 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        @media (max-width: 768px) {
+            .nav-wrapper {
+                padding-top: 5px;
+            }
+        }
+
+        .nav-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(8, 20, 12, 1), rgba(8, 20, 12, 0.96));
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            z-index: -1;
+        }
+
+        .nav-wrapper.fixed-nav {
+            padding-top: 3px;
+        }
+
+        .nav-wrapper.fixed-nav::before {
+            opacity: 1;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+            position: relative;
+        }
+        
+        .logo-block {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            z-index: 101;
+        }
+        .logo-img {
+            height: 46px;
+            width: auto;
+            display: block;
+        }
+        .logo-text-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .logo-title {
+            color: var(--white);
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+        .logo-sub {
+            display: block;
+            color: var(--sand-bg);
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.25em;
+        }
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-item {
+            position: relative;
+            margin: 0 16px;
+        }
+        .nav-link {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 10px 0;
+            letter-spacing: 0.02em;
+            transition: var(--transition-clean);
+            display: inline-flex;
+            align-items: center;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--sand-bg);
+            opacity: 0.85;
+        }
+
+        .nav-link.has-submenu::after {
+            content: '';
+            display: inline-block;
+            margin-left: 8px;
+            width: 5px;
+            height: 5px;
+            border-right: 1.5px solid currentColor;
+            border-bottom: 1.5px solid currentColor;
+            transform: translateY(-2px) rotate(45deg);
+            transition: var(--transition-clean);
+            opacity: 0.8;
+        }
+        .nav-item:hover .nav-link.has-submenu::after {
+            transform: translateY(1px) rotate(225deg);
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background-color: var(--white);
+            min-width: 270px;
+            border-top: 3px solid var(--river-clear);
+            box-shadow: 0 15px 30px rgba(8, 20, 12, 0.08);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition-clean);
+            padding: 12px 0;
+        }
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+        .dropdown-item {
+            display: block;
+            padding: 10px 24px;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition-clean);
+        }
+        .dropdown-item:hover, .dropdown-item.active {
+            background-color: var(--sand-card);
+            color: var(--river-deep);
+            padding-left: 28px;
+        }
+
+        .btn-nav-cta {
+            background-color: var(--white);
+            color: var(--forest-dark);
+            padding: 10px 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            transition: var(--transition-clean);
+            border: 1px solid transparent;
+        }
+        .btn-nav-cta:hover {
+            background-color: transparent;
+            color: var(--white);
+            border-color: var(--white);
+        }
+
+        .mobile-hamburger-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            width: 30px;
+            height: 24px;
+            position: relative;
+            z-index: 101;
+        }
+        .mobile-hamburger-btn span {
+            display: block;
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background: var(--white);
+            border-radius: 2px;
+            opacity: 1;
+            left: 0;
+            transform: rotate(0deg);
+            transition: .25s ease-in-out;
+        }
+        .mobile-hamburger-btn span:nth-child(1) { top: 0px; }
+        .mobile-hamburger-btn span:nth-child(2) { top: 10px; }
+        .mobile-hamburger-btn span:nth-child(3) { top: 20px; }
+
+        .mobile-hamburger-btn.is-active span:nth-child(1) { top: 10px; transform: rotate(135deg); }
+        .mobile-hamburger-btn.is-active span:nth-child(2) { opacity: 0; left: -60px; }
+        .mobile-hamburger-btn.is-active span:nth-child(3) { top: 10px; transform: rotate(-135deg); }
+
+        /* --- HERO HEADER SECTION --- */
+        .hero-section {
+            position: relative;
+            height: 20vh;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            overflow: hidden;
+            background-color: var(--forest-black);
+            text-align: center;
+        }
+        .hero-video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        .hero-video-bg video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(8, 20, 12, 0.65);
+            z-index: 2;
+        }
+        .hero-content-block {
+            position: relative;
+            z-index: 3;
+            max-width: 850px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-top: 40px;
+        }
+        .hero-subtitle {
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--sand-bg);
+            margin-bottom: 15px;
+            display: block;
+        }
+        .hero-section h1 {
+            color: var(--white);
+            font-size: 3.2rem;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        .hero-section p {
+            color: var(--sand-bg);
+            font-size: 1.2rem;
+            max-width: 680px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+        
+        .hero-action-row {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background-color: var(--river-clear);
+            color: var(--white);
+            padding: 14px 30px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            transition: var(--transition-clean);
+            border: 2px solid var(--river-clear);
+            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary:hover {
+            background-color: var(--river-deep);
+            border-color: var(--river-deep);
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: var(--white);
+            padding: 14px 30px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            transition: var(--transition-clean);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-secondary:hover {
+            background-color: var(--white);
+            color: var(--forest-dark);
+            border-color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .wave-divider-wrap {
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            line-height: 0;
+            z-index: 4;
+        }
+        .wave-divider-wrap svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 45px;
+        }
+        .wave-divider-wrap .wave-path {
+            fill: var(--sand-bg);
+        }
+
+        /* --- CONTENT SECTION STYLES --- */
+        .content-section {
+            padding: 80px 0;
+        }
+        .bg-white {
+            background-color: var(--white);
+        }
+        .section-header-layout {
+            max-width: 800px;
+            margin: 0 auto 50px;
+            text-align: center;
+        }
+        .section-tag {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--river-clear);
+            margin-bottom: 10px;
+            display: block;
+        }
+        .main-heading-style {
+            font-size: 2.3rem;
+            margin-bottom: 18px;
+            line-height: 1.25;
+        }
+
+        /* --- BOOKING BANNER CALLOUT --- */
+        .resmark-callout-card {
+            background: linear-gradient(135deg, var(--forest-dark), var(--forest-mid));
+            color: var(--white);
+            border-radius: 8px;
+            padding: 45px 40px;
+            margin-bottom: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            box-shadow: 0 15px 35px rgba(8, 20, 12, 0.12);
+            border-left: 6px solid var(--river-clear);
+        }
+        .resmark-callout-text h3 {
+            color: var(--white);
+            font-size: 1.75rem;
+            margin-bottom: 10px;
+        }
+        .resmark-callout-text p {
+            color: var(--sand-bg);
+            opacity: 0.9;
+            font-size: 1.05rem;
+            margin-bottom: 0;
+            max-width: 650px;
+        }
+
+        /* --- TRAVEL PACKAGES GRID --- */
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 35px;
+            margin-bottom: 60px;
+        }
+        .pkg-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            border: 1px solid rgba(0,0,0,0.08);
+            border-top: 5px solid var(--river-clear);
+            padding: 40px 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+            transition: var(--transition-clean);
+            position: relative;
+        }
+        .pkg-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+        }
+        .pkg-badge {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            background-color: rgba(58, 125, 155, 0.12);
+            color: var(--river-deep);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 6px 12px;
+            border-radius: 20px;
+        }
+        .pkg-header {
+            margin-bottom: 25px;
+            padding-right: 80px;
+        }
+        .pkg-title {
+            font-size: 1.65rem;
+            color: var(--forest-dark);
+            margin-bottom: 8px;
+        }
+        .pkg-price-group {
+            margin-bottom: 20px;
+        }
+        .pkg-price-main {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--river-deep);
+            line-height: 1;
+        }
+        .pkg-price-sub {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+            font-style: italic;
+        }
+        .pkg-body-desc {
+            margin-bottom: 25px;
+            font-size: 1rem;
+        }
+        .pkg-itinerary-block {
+            background-color: var(--sand-card);
+            border-radius: 6px;
+            padding: 22px 20px;
+            margin-bottom: 20px;
+        }
+        .pkg-itinerary-header {
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--forest-light);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .pkg-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .pkg-list li {
+            position: relative;
+            padding-left: 22px;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .pkg-list li:last-child {
+            margin-bottom: 0;
+        }
+        .pkg-list li::before {
+            content: "•";
+            position: absolute;
+            left: 5px;
+            color: var(--river-clear);
+            font-size: 1.2rem;
+            line-height: 1;
+            top: -1px;
+        }
+        .pkg-link-inline {
+            color: var(--river-deep);
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--river-clear);
+            transition: var(--transition-clean);
+        }
+        .pkg-link-inline:hover {
+            color: var(--forest-dark);
+            border-bottom-style: solid;
+        }
+        .note-box {
+            background-color: rgba(238, 242, 237, 0.7);
+            border-left: 3px solid var(--river-clear);
+            padding: 12px 15px;
+            margin-top: 15px;
+            border-radius: 0 4px 4px 0;
+        }
+        .note-box p {
+            font-size: 0.88rem;
+            color: var(--forest-dark);
+            margin: 0;
+            line-height: 1.45;
+        }
+
+        /* --- DIRECTORY CARDS --- */
+        .directory-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+        .dir-card {
+            background-color: var(--sand-card);
+            padding: 30px 25px;
+            border-radius: 6px;
+            border-top: 3px solid var(--forest-light);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .dir-card h4 {
+            font-size: 1.2rem;
+            color: var(--forest-dark);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .dir-item {
+            margin-bottom: 20px;
+        }
+        .dir-item:last-child {
+            margin-bottom: 0;
+        }
+        .dir-name {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--forest-dark);
+            margin-bottom: 4px;
+            display: block;
+        }
+        .dir-detail {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            font-family: 'Lora', serif;
+        }
+        .dir-detail a {
+            color: var(--river-deep);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .dir-detail a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- FOOTER STRUCTURE --- */
+        .footer-block {
+            background-color: var(--forest-black);
+            color: rgba(255, 255, 255, 0.65);
+            padding: 80px 0 35px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .footer-columns {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 50px;
+        }
+        .footer-logo-title {
+            color: var(--white);
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            letter-spacing: 0.05em;
+        }
+        .footer-heading {
+            color: var(--white);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 20px;
+        }
+        .footer-links-list {
+            list-style: none;
+        }
+        .footer-links-list li {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+        .footer-links-list a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: var(--transition-clean);
+        }
+        .footer-links-list a:hover {
+            color: var(--white);
+        }
+        .footer-meta-row {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 25px;
+            font-size: 0.85rem;
+            text-align: center;
+            letter-spacing: 0.02em;
+        }
+
+        /* Scroll Animations Triggers */
+        .animate-scroll-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1), transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .animate-scroll-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- VIDEO MODAL WINDOW LAYERS --- */
+        .story-video-modal {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(8, 20, 12, 0.95);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition-clean);
+        }
+        .story-video-modal.modal-open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-inner-bounds {
+            width: 90%;
+            max-width: 960px;
+            aspect-ratio: 16/9;
+            position: relative;
+            background-color: var(--forest-black);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .modal-close-trigger {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: transparent;
+            border: none;
+            color: var(--white);
+            font-size: 1.8rem;
+            cursor: pointer;
+            font-family: sans-serif;
+        }
+        .modal-inner-bounds iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* --- MOBILE SCREEN RESPONSIVE BOUNDS --- */
+        @media (max-width: 992px) {
+            .mobile-hamburger-btn {
+                display: block;
+            }
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 320px;
+                height: 100vh;
+                background-color: var(--forest-dark);
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: flex-start;
+                padding: 110px 30px 40px;
+                transition: right 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+                box-shadow: -5px 0 30px rgba(0,0,0,0.3);
+                overflow-y: auto;
+                z-index: 100;
+            }
+            .nav-menu.is-active {
+                right: 0;
+            }
+            .nav-item {
+                margin: 12px 0;
+                width: 100%;
+            }
+            .nav-link {
+                font-size: 1.1rem;
+                width: 100%;
+                justify-content: space-between;
+                padding: 12px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+            
+            .nav-item:hover .dropdown-menu {
+                transform: none !important;
+                opacity: 0 !important;
+                visibility: hidden !important;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                transform: none !important;
+                display: block;
+                max-height: 0;
+                opacity: 0;
+                visibility: hidden;
+                overflow: hidden;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.15);
+                box-shadow: none;
+                padding: 0 0;
+                margin-top: 0;
+                border-top: none;
+                border-left: 3px solid var(--river-clear);
+                border-radius: 0 4px 4px 0;
+                transition: max-height 0.38s cubic-bezier(0.25, 1, 0.5, 1),
+                            opacity 0.38s ease,
+                            padding 0.38s cubic-bezier(0.25, 1, 0.5, 1),
+                            margin-top 0.38s cubic-bezier(0.25, 1, 0.5, 1);
+            }
+            
+            .nav-item.mobile-dropdown-open .dropdown-menu,
+            .nav-item.mobile-dropdown-open:hover .dropdown-menu {
+                max-height: 350px !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                padding: 4px 0 !important;
+                margin-top: 6px !important;
+            }
+            
+            .dropdown-item {
+                color: rgba(255, 255, 255, 0.85);
+                padding: 12px 20px;
+                font-size: 0.95rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            }
+            .dropdown-item:last-child {
+                border-bottom: none;
+            }
+            
+            .dropdown-item:hover {
+                background-color: rgba(255, 255, 255, 0.05) !important;
+                padding-left: 20px !important; 
+                color: var(--white) !important;
+                transform: none !important;
+            }
+            
+            .btn-nav-cta {
+                display: block;
+                text-align: center;
+                margin-top: 25px;
+                width: 100%;
+                background-color: var(--river-clear);
+                color: var(--white);
+            }
+            .btn-nav-cta:hover {
+                background-color: var(--river-deep);
+            }
+            
+            .packages-grid { grid-template-columns: 1fr; }
+            .directory-grid { grid-template-columns: repeat(2, 1fr); }
+            .resmark-callout-card { flex-direction: column; text-align: center; padding: 35px 25px; }
+            .footer-columns { grid-template-columns: 1fr; gap: 40px; }
+            .hero-section h1 { font-size: 2.3rem; }
+            .utility-container { display: none; }
+            .nav-wrapper { top: 0; }
+        }
+
+        @media (max-width: 600px) {
+            .directory-grid { grid-template-columns: 1fr; }
+            .pkg-card { padding: 30px 20px; }
+            .pkg-header { padding-right: 0; }
+            .pkg-badge { position: relative; top: 0; right: 0; display: inline-block; margin-bottom: 15px; }
+        }
+        /* Hide mobile-only dropdown items by default (Desktop) */
+        .dropdown-item.mobile-only {
+            display: none;
+        }
+
+        /* Show mobile-only dropdown items on smaller screens */
+        @media (max-width: 992px) {
+            .dropdown-item.mobile-only {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="utility-bar">
+        <div class="container utility-container">
+            <div>Operating under special use permits from the U.S. Forest Service</div>
+            <div>
+                <a href="tel:18004531482">1-800-453-1482</a>
+                <a href="mailto:guideinfo@riverguide.com">guideinfo@riverguide.com</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-wrapper" id="globalNavbar">
+        <nav class="container nav-container">
+            <a href="/" class="logo-block">
+                <img src="/images/AWAlogo.webp" alt="AWA Logo" class="logo-img">
+                <div class="logo-text-group">
+                    <div class="logo-title">Action Whitewater</div>
+                    <div class="logo-sub">Adventures</div>
+                </div>
+            </a>
+            
+            <button class="mobile-hamburger-btn" id="mobileMenuBtn" aria-label="Toggle Navigation Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-menu" id="navMenuDropdownTrack">
+                <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+                <li class="nav-item">
+                    <a href="/main-salmon-trips" class="nav-link has-submenu">Main Salmon Trips</a>
+                    <div class="dropdown-menu">
+                        <a href="/why-choose-us" class="dropdown-item">Why Choose Us</a>
+                        <a href="/trip-details" class="dropdown-item">5-Day Trip Details</a>
+                        <a href="/trip-rates" class="dropdown-item">Rates & Schedules</a>
+                        <a href="/travel-packages" class="dropdown-item">Travel Packages & Shuttles</a>
+                        <a href="/main-salmon-trips" class="dropdown-item mobile-only">Main Salmon History</a>
+
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="/trip-preparation" class="nav-link has-submenu">Trip Preparation</a>
+                    <div class="dropdown-menu">
+                        <a href="/checklist" class="dropdown-item">Before You Go</a>
+                        <a href="/packing-list" class="dropdown-item">Packing List</a>
+                        <a href="/trip-preparation" class="dropdown-item mobile-only">Meet the River Boss</a>
+
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="/trip-rates" class="btn-nav-cta">Reservations</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- HERO HEADER SECTION -->
+    <header class="hero-section">
+        <div class="hero-video-bg">
+            <video autoplay loop muted playsinline poster="/images/AWAheader3.jpg">
+                <source src="/images/AWAheader.mp4" type="video/mp4">
+                <source src="/images/AWAheader.jpg" type="image/jpeg">
+            </video>
+        </div>
+        <div class="hero-overlay"></div>
+        
+        <div class="container">
+            <div class="hero-content-block">
+                <h1>Travel Packages & Shuttles</h1>
+                <p>We handle hotel bookings, scenic charter flights, and vehicle shuttles so you can focus entirely on enjoying your Main Salmon River adventure.</p>
+            </div>
+        </div>
+
+        <div class="wave-divider-wrap">
+            <svg viewBox="0 0 1440 74" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="wave-path" d="M0,32 C240,70 480,70 720,40 C960,10 1200,10 1440,35 L1440,74 L0,74 Z"></path>
+            </svg>
+        </div>
+    </header>
+
+    <!-- MAIN TRAVEL PACKAGES SECTION -->
+    <section class="content-section" id="packages">
+        <div class="container">
+            
+            <div class="section-header-layout animate-scroll-in">
+                <span class="section-tag">All-Inclusive Convenience</span>
+                <h2 class="main-heading-style">Recommended Vacation Packages</h2>
+                <p>Choose between our convenient fly/drive Boise package or our seamless Salmon-to-McCall driving shuttle package. Both options take care of lodging and transportation details for a worry-free experience.</p>
+            </div>
+
+            <!-- ONLINE BOOKING CALLOUT BANNER -->
+            <div class="resmark-callout-card animate-scroll-in">
+                <div class="resmark-callout-text">
+                    <h3>Reserve Flights, Shuttles & Lodging Online</h3>
+                    <p>Easily arrange your Gem Air flights, vehicle shuttles with River Shuttles, and pre-river hotel stays in Salmon directly through our secure online reservation portal.</p>
+                </div>
+                <a href="https://riverguide.app.resmarksystems.com/public/5d7924e8f182ae0019f88aac" target="_blank" rel="noopener" class="btn-primary" style="white-space: nowrap;">
+                    Book Online Now &rarr;
+                </a>
+            </div>
+
+            <!-- PACKAGES COMPARISON GRID -->
+            <div class="packages-grid">
+                
+                <!-- PACKAGE 1: BOISE TO BOISE -->
+                <div class="pkg-card animate-scroll-in">
+                    <div>
+                        <span class="pkg-badge">Fly & Drive Choice</span>
+                        <div class="pkg-header">
+                            <h3 class="pkg-title">Boise to Boise Package</h3>
+                            <div class="pkg-price-group">
+                                <div class="pkg-price-main">$495 <span style="font-size: 1rem; font-weight: normal; color: var(--text-muted);">/ person</span></div>
+                                <div class="pkg-price-sub">*$195 single supplement fee if traveling alone</div>
+                            </div>
+                        </div>
+
+                        <p class="pkg-body-desc">When flying or driving into Boise, Idaho, we recommend this stress-free bargain package. We make hotel and travel arrangements to get you from Boise to your river trip and back to Boise at the end.</p>
+
+                        <div class="pkg-itinerary-block">
+                            <div class="pkg-itinerary-header">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                Pre-River Trip Arrangements
+                            </div>
+                            <ul class="pkg-list">
+                                <li><strong>Lodging:</strong> Double occupancy lodging in Boise, ID at the <a href="https://vistainnboise.com" target="_blank" rel="noopener" class="pkg-link-inline">Vista Inn</a>. Continental breakfast available starting at 5:15 am.</li>
+                                <li><strong>Charter Flight:</strong> Scenic morning flight from Boise to Salmon, ID. Air services provided by <a href="https://gemairflies.com" target="_blank" rel="noopener" class="pkg-link-inline">Gem Air</a>.</li>
+                            </ul>
+                        </div>
+
+                        <div class="pkg-itinerary-block">
+                            <div class="pkg-itinerary-header">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                Post-River Trip Arrangements
+                            </div>
+                            <ul class="pkg-list">
+                                <li><strong>Lodging:</strong> Double occupancy lodging at <a href="https://thirdstreetinn.com" target="_blank" rel="noopener" class="pkg-link-inline">Third Street Inn</a> in McCall, ID. Continental breakfast available starting at 6:00 am.</li>
+                                <li><strong>Airport Return:</strong> 8:30 am shuttle transportation from McCall back to Boise, ID (airport).</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="note-box">
+                            <p><strong>Note:</strong> You will need to arrange your own commercial travel to Boise, Idaho by air or car prior to the start of the package.</p>
+                        </div>
+                        <a href="https://riverguide.app.resmarksystems.com/public/5d7924e8f182ae0019f88aac" target="_blank" rel="noopener" class="btn-primary" style="width: 100%; text-align: center; justify-content: center; margin-top: 25px;">
+                            Book Boise Vacation Package
+                        </a>
+                    </div>
+                </div>
+
+                <!-- PACKAGE 2: SALMON TO MCCALL -->
+                <div class="pkg-card animate-scroll-in">
+                    <div>
+                        <span class="pkg-badge">Road Trip Choice</span>
+                        <div class="pkg-header">
+                            <h3 class="pkg-title">Salmon to McCall Package</h3>
+                            <div class="pkg-price-group">
+                                <div class="pkg-price-main">$375 <span style="font-size: 1rem; font-weight: normal; color: var(--text-muted);">Car Shuttle</span> + $195 <span style="font-size: 1rem; font-weight: normal; color: var(--text-muted);">/ person Hotel</span></div>
+                                <div class="pkg-price-sub">*$170 single supplement fee if traveling alone</div>
+                            </div>
+                        </div>
+
+                        <p class="pkg-body-desc">When driving directly to Salmon, ID, we recommend this driving package. It provides 2 nights lodging (one night in Salmon and one night in McCall) plus delivery of your vehicle directly to the river trip’s end in McCall.</p>
+
+                        <div class="pkg-itinerary-block">
+                            <div class="pkg-itinerary-header">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                Pre-River Trip Arrangements
+                            </div>
+                            <ul class="pkg-list">
+                                <li><strong>Car Shuttle:</strong> We arrange to shuttle your personal car from Salmon to McCall, ID. Cars are left at Stagecoach Inn (keys will be collected before boarding the river bus).</li>
+                                <li><strong>Lodging:</strong> Double occupancy lodging at <a href="https://stagecoachinnmotel.com" target="_blank" rel="noopener" class="pkg-link-inline">Stagecoach Inn</a> in Salmon, ID. Continental breakfast available starting at 6:15 am.</li>
+                            </ul>
+                        </div>
+
+                        <div class="pkg-itinerary-block">
+                            <div class="pkg-itinerary-header">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                Post-River Trip Arrangements
+                            </div>
+                            <ul class="pkg-list">
+                                <li><strong>Lodging:</strong> Double occupancy lodging at <a href="https://thirdstreetinn.com" target="_blank" rel="noopener" class="pkg-link-inline">Third Street Inn</a> in McCall, ID, where your car awaits. Continental breakfast available from 6:00 am to 11:00 am.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="note-box">
+                            <p><strong>Note:</strong> If you prefer to drive back from Salmon at the end of your trip, call our office for charter flight arrangements from McCall to Salmon. Additional charges apply.</p>
+                        </div>
+                        <a href="https://riverguide.app.resmarksystems.com/public/5d7924e8f182ae0019f88aac" target="_blank" rel="noopener" class="btn-primary" style="width: 100%; text-align: center; justify-content: center; margin-top: 25px;">
+                            Book Driving Package
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- INDEPENDENT TRAVEL & LOGISTICS DIRECTORY -->
+    <section class="content-section bg-white">
+        <div class="container">
+            
+            <div class="section-header-layout animate-scroll-in">
+                <span class="section-tag">Self-Guided Travel Directory</span>
+                <h2 class="main-heading-style">Independent Travel Information</h2>
+                <p>Prefer to make your own hotel and shuttle reservations? Use our direct contact directory below to book with regional lodging and transportation partners along the Salmon River corridor.</p>
+            </div>
+
+            <div class="directory-grid">
+                
+                <!-- VEHICLE SHUTTLES -->
+                <div class="dir-card animate-scroll-in">
+                    <div>
+                        <h4>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                            Vehicle Shuttles
+                        </h4>
+                        <div class="dir-item">
+                            <span class="dir-name">River Shuttles</span>
+                            <div class="dir-detail">
+                                512 Guleke, Salmon, ID 83467<br>
+                                Phone: <a href="tel:18008318942">(800) 831-8942</a><br>
+                                Fax: (208) 756-4188<br>
+                                Email: <a href="mailto:info@rivershuttles.com">info@rivershuttles.com</a><br>
+                                Web: <a href="https://rivershuttles.com" target="_blank" rel="noopener">rivershuttles.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FLIGHTS -->
+                <div class="dir-card animate-scroll-in">
+                    <div>
+                        <h4>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.7 5.2c.3.4.8.5 1.3.3l.5-.3c.4-.2.6-.6.5-1.1z"/></svg>
+                            Air Carriers & Charters
+                        </h4>
+                        <div class="dir-item">
+                            <span class="dir-name">Gem Air</span>
+                            <div class="dir-detail">
+                                31 Hamner Dr., Salmon, ID 83467<br>
+                                Phone: <a href="tel:12087567382">(208) 756-7382</a><br>
+                                Web: <a href="https://gemairflies.com" target="_blank" rel="noopener">gemairflies.com</a>
+                            </div>
+                        </div>
+                        <div class="dir-item" style="margin-top: 15px;">
+                            <span class="dir-name">McCall Air</span>
+                            <div class="dir-detail">
+                                P.O. Box 771, McCall, ID 83638<br>
+                                Phone: <a href="tel:18009926559">(800) 992-6559</a><br>
+                                Fax: (208) 634-3917
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SALMON HOTELS -->
+                <div class="dir-card animate-scroll-in">
+                    <div>
+                        <h4>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v16"/><path d="M1 21h22"/><path d="M9 7h1"/><path d="M9 11h1"/><path d="M9 15h1"/><path d="M14 7h1"/><path d="M14 11h1"/><path d="M14 15h1"/></svg>
+                            Salmon Hotels
+                        </h4>
+                        <div class="dir-item">
+                            <span class="dir-name">Stagecoach Inn Motel</span>
+                            <div class="dir-detail">
+                                201 Hwy 93 N, Salmon, ID 83467<br>
+                                Phone: <a href="tel:12087562919">(208) 756-2919</a><br>
+                                Web: <a href="https://stagecoachinnmotel.com" target="_blank" rel="noopener">stagecoachinnmotel.com</a>
+                            </div>
+                        </div>
+                        <div class="dir-item" style="margin-top: 15px;">
+                            <span class="dir-name">Super 8 Salmon</span>
+                            <div class="dir-detail">
+                                104 Courthouse Dr., Salmon, ID 83467<br>
+                                Phone: <a href="tel:12087568880">(208) 756-8880</a><br>
+                                Fax: (208) 756-8898
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MCCALL HOTELS -->
+                <div class="dir-card animate-scroll-in">
+                    <div>
+                        <h4>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v16"/><path d="M1 21h22"/><path d="M9 7h1"/><path d="M9 11h1"/><path d="M9 15h1"/><path d="M14 7h1"/><path d="M14 11h1"/><path d="M14 15h1"/></svg>
+                            McCall Hotels
+                        </h4>
+                        <div class="dir-item">
+                            <span class="dir-name">Third Street Inn</span>
+                            <div class="dir-detail">
+                                415 N 3rd St, McCall, ID 83638<br>
+                                Phone: <a href="tel:12086346300">(208) 634-6300</a><br>
+                                Web: <a href="https://thirdstreetinn.com" target="_blank" rel="noopener">thirdstreetinn.com</a>
+                            </div>
+                        </div>
+                        <div class="dir-item" style="margin-top: 15px;">
+                            <span class="dir-name">Super 8 McCall</span>
+                            <div class="dir-detail">
+                                303 S 3rd Hwy 55, McCall, ID 83638<br>
+                                Phone: <a href="tel:12086344637">(208) 634-4637</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BOISE HOTELS -->
+                <div class="dir-card animate-scroll-in">
+                    <div>
+                        <h4>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v16"/><path d="M1 21h22"/><path d="M9 7h1"/><path d="M9 11h1"/><path d="M9 15h1"/><path d="M14 7h1"/><path d="M14 11h1"/><path d="M14 15h1"/></svg>
+                            Boise Hotels
+                        </h4>
+                        <div class="dir-item">
+                            <span class="dir-name">Vista Inn Boise</span>
+                            <div class="dir-detail">
+                                Boise, ID<br>
+                                Pre-river trip lodging for Boise package guests.<br>
+                                Web: <a href="https://vistainnboise.com" target="_blank" rel="noopener">vistainnboise.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ASSISTANCE CALLOUT -->
+                <div class="dir-card animate-scroll-in" style="background-color: var(--forest-dark); color: var(--white); border-top-color: var(--river-clear);">
+                    <div>
+                        <h4 style="color: var(--white); border-bottom-color: rgba(255,255,255,0.15);">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                            Need Logistics Help?
+                        </h4>
+                        <p style="color: var(--sand-bg); font-size: 0.95rem; margin-bottom: 20px;">
+                            Our team is here to assist with custom flight charters, special vehicle shuttles, or group lodging questions.
+                        </p>
+                        <a href="tel:18004531482" class="btn-primary" style="padding: 10px 18px; font-size: 0.85rem; width: 100%; justify-content: center;">
+                            Call 1-800-453-1482
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER STRUCTURE -->
+    <footer class="footer-block">
+        <div class="container">
+            <div class="footer-columns">
+                <div>
+                    <div class="footer-logo-title">Action Whitewater Adventures</div>
+                    <p style="color: rgba(255,255,255,0.45); font-size: 0.95rem;">Providing all-inclusive multi-day wilderness river rafting trips down the historic canyons of the Main Salmon River since 1960.</p>
+                </div>
+                <div>
+                    <h5 class="footer-heading">Expeditions</h5>
+                    <ul class="footer-links-list">
+                        <li><a href="/trip-rates">5-Day Trip Rates</a></li>
+                        <li><a href="/trip-details">Itinerary Details</a></li>
+                        <li><a href="/packing-list">Packing Guidance</a></li>
+                        <li><a href="/travel-packages">Travel Shuttles</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h5 class="footer-heading">Inquiries</h5>
+                    <ul class="footer-links-list">
+                        <li style="color: rgba(255, 255, 255, 0.65);">Toll Free: <a href="tel:18004531482" style="color:inherit;">1-800-453-1482</a></li>
+                        <li style="color: rgba(255, 255, 255, 0.65);">Email: <a href="mailto:guideinfo@riverguide.com" style="color:inherit;">guideinfo@riverguide.com</a></li>
+                        <li style="color: rgba(255, 255, 255, 0.65);">Web: <a href="https://riverguide.com" style="color:inherit;">riverguide.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-meta-row">
+                <p>&copy; 2026 Action Whitewater Adventures. All rights reserved. Outfitted under authorization from the United States Forest Service and the Bureau of Land Management.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- VIDEO MODAL WINDOW -->
+    <div class="story-video-modal" id="videoModalElement">
+        <div class="modal-inner-bounds">
+            <button class="modal-close-trigger" id="closeModalBtn">&times;</button>
+            <iframe id="modalFramePlayer" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // --- STICKY NAVIGATION CONTROLLERS ---
+        const navBar = document.getElementById('globalNavbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) {
+                navBar.classList.add('fixed-nav');
+            } else {
+                navBar.classList.remove('fixed-nav');
+            }
+        });
+
+        // --- MOBILE NAV BAR DROPDOWN ENGINE ---
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenuDropdownTrack = document.getElementById('navMenuDropdownTrack');
+        const submenuLinks = document.querySelectorAll('.nav-link.has-submenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('is-active');
+            navMenuDropdownTrack.classList.toggle('is-active');
+        });
+
+        submenuLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (window.innerWidth <= 992) {
+                    e.preventDefault();
+                    const parentItem = link.parentElement;
+                    
+                    submenuLinks.forEach(item => {
+                        if(item.parentElement !== parentItem) {
+                            item.parentElement.classList.remove('mobile-dropdown-open');
+                        }
+                    });
+                    
+                    parentItem.classList.toggle('mobile-dropdown-open');
+                }
+            });
+        });
+
+        // --- CONTENT LAZY SCROLL OBSERVERS ---
+        const scrollElements = document.querySelectorAll('.animate-scroll-in');
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, {
+            threshold: 0.05,
+            rootMargin: '0px 0px -40px 0px'
+        });
+
+        scrollElements.forEach(el => scrollObserver.observe(el));
+
+        // --- VIDEO STREAM TRIGGER SYSTEM ---
+        const modalEl = document.getElementById('videoModalElement');
+        const closeBtn = document.getElementById('closeModalBtn');
+        const framePlayer = document.getElementById('modalFramePlayer');
+
+        const dropModalDisplay = () => {
+            if (modalEl) {
+                modalEl.classList.remove('modal-open');
+                if (framePlayer) framePlayer.src = "";
+                document.body.style.overflow = '';
+            }
+        };
+
+        if (closeBtn) closeBtn.addEventListener('click', dropModalDisplay);
+        if (modalEl) {
+            modalEl.addEventListener('click', (e) => {
+                if (e.target === modalEl) dropModalDisplay();
+            });
+        }
+    </script>
+</body>
+</html>

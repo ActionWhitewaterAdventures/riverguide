@@ -1,0 +1,2116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5-Day Trip Details | Action Whitewater Adventures</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- BRAND COLOR & DESIGN SYSTEM --- */
+        :root {
+            --forest-black: #08140c;
+            --forest-dark: #122619;
+            --forest-mid: #1b3b22;
+            --forest-light: #2d5a37;
+            --river-deep: #1d4e68;
+            --river-clear: #3a7d9b;
+            --sand-bg: #f5f7f4;
+            --sand-card: #eef2ed;
+            --white: #ffffff;
+            --text-dark: #1c2620;
+            --text-muted: #4a5750;
+            --transition-clean: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+            --transition-fade: opacity 0.4s ease, visibility 0.4s ease;
+        }
+
+        /* --- GLOBAL LAYOUT STYLES --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: 'Outfit', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--sand-bg);
+            overflow-x: hidden;
+        }
+
+        body {
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        p, li {
+            font-family: 'Lora', serif;
+            font-size: 1.05rem;
+            line-height: 1.75;
+            color: var(--text-muted);
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-weight: 700;
+            color: var(--forest-dark);
+            letter-spacing: -0.02em;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        /* --- TOP INFORMATION BAR --- */
+        .utility-bar {
+            background-color: var(--forest-black);
+            color: var(--sand-bg);
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            z-index: 100;
+        }
+        .utility-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 40px;
+        }
+        .utility-bar a {
+            color: var(--sand-bg);
+            text-decoration: none;
+            margin-left: 20px;
+            transition: var(--transition-clean);
+        }
+        .utility-bar a:hover {
+            color: var(--white);
+            text-decoration: underline;
+        }
+
+        /* --- MAIN NAVIGATION BAR --- */
+        .nav-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 99;
+            background: linear-gradient(to bottom, rgba(8, 20, 12, 1), rgba(8, 20, 12, 0));
+            padding-top: 40px;
+            transition: padding 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .nav-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(8, 20, 12, 1), rgba(8, 20, 12, 0.96));
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            z-index: -1;
+        }
+
+        .nav-wrapper.fixed-nav {
+            padding-top: 3px;
+        }
+
+        .nav-wrapper.fixed-nav::before {
+            opacity: 1;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+            position: relative;
+        }
+        
+        .logo-block {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            z-index: 101;
+        }
+        .logo-img {
+            height: 46px;
+            width: auto;
+            display: block;
+        }
+        .logo-text-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .logo-title {
+            color: var(--white);
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+        .logo-sub {
+            display: block;
+            color: var(--sand-bg);
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.25em;
+        }
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-item {
+            position: relative;
+            margin: 0 16px;
+        }
+        .nav-link {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 10px 0;
+            letter-spacing: 0.02em;
+            transition: var(--transition-clean);
+            display: inline-flex;
+            align-items: center;
+        }
+        .nav-link:hover {
+            color: var(--sand-bg);
+            opacity: 0.85;
+        }
+
+        .nav-link.has-submenu::after {
+            content: '';
+            display: inline-block;
+            margin-left: 8px;
+            width: 5px;
+            height: 5px;
+            border-right: 1.5px solid currentColor;
+            border-bottom: 1.5px solid currentColor;
+            transform: translateY(-2px) rotate(45deg);
+            transition: var(--transition-clean);
+            opacity: 0.8;
+        }
+        .nav-item:hover .nav-link.has-submenu::after {
+            transform: translateY(1px) rotate(225deg);
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background-color: var(--white);
+            min-width: 270px;
+            border-top: 3px solid var(--river-clear);
+            box-shadow: 0 15px 30px rgba(8, 20, 12, 0.08);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition-clean);
+            padding: 12px 0;
+        }
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+        .dropdown-item {
+            display: block;
+            padding: 10px 24px;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition-clean);
+        }
+        .dropdown-item:hover {
+            background-color: var(--sand-card);
+            color: var(--river-deep);
+            padding-left: 28px;
+        }
+
+        .btn-nav-cta {
+            background-color: var(--white);
+            color: var(--forest-dark);
+            padding: 10px 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            transition: var(--transition-clean);
+            border: 1px solid transparent;
+        }
+        .btn-nav-cta:hover {
+            background-color: transparent;
+            color: var(--white);
+            border-color: var(--white);
+        }
+
+        .mobile-hamburger-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            width: 30px;
+            height: 24px;
+            position: relative;
+            z-index: 101;
+        }
+        .mobile-hamburger-btn span {
+            display: block;
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background: var(--white);
+            border-radius: 2px;
+            opacity: 1;
+            left: 0;
+            transform: rotate(0deg);
+            transition: .25s ease-in-out;
+        }
+        .mobile-hamburger-btn span:nth-child(1) { top: 0px; }
+        .mobile-hamburger-btn span:nth-child(2) { top: 10px; }
+        .mobile-hamburger-btn span:nth-child(3) { top: 20px; }
+
+        .mobile-hamburger-btn.is-active span:nth-child(1) { top: 10px; transform: rotate(135deg); }
+        .mobile-hamburger-btn.is-active span:nth-child(2) { opacity: 0; left: -60px; }
+        .mobile-hamburger-btn.is-active span:nth-child(3) { top: 10px; transform: rotate(-135deg); }
+
+        /* --- PAGE HEADER --- */
+        .page-header {
+            position: relative;
+            padding-top: 160px;
+            padding-bottom: 85px;
+            background: linear-gradient(rgba(8, 20, 12, 0.78), rgba(8, 20, 12, 0.88)), url('/images/AWAheader.jpg') center/cover no-repeat;
+            color: var(--white);
+            text-align: center;
+        }
+        .page-header-subtitle {
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--river-clear);
+            margin-bottom: 12px;
+            display: block;
+        }
+        .page-header h1 {
+            color: var(--white);
+            font-size: 2.8rem;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+        .page-header-lead {
+            max-width: 720px;
+            margin: 0 auto;
+            color: rgba(255, 255, 255, 0.88);
+            font-size: 1.1rem;
+        }
+
+        /* --- TRIP SNAPSHOT BAR --- */
+        .trip-facts-bar {
+            background-color: var(--white);
+            padding: 30px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-top: -35px;
+            position: relative;
+            z-index: 10;
+            border-radius: 6px;
+            border-bottom: 3px solid var(--river-clear);
+        }
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .fact-item {
+            text-align: center;
+            padding: 10px 15px;
+            border-right: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        .fact-item:last-child {
+            border-right: none;
+        }
+        .fact-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--river-clear);
+            margin-bottom: 6px;
+            display: block;
+        }
+        .fact-value {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--forest-dark);
+        }
+
+        /* --- CONTENT SECTIONS --- */
+        .content-section {
+            padding: 85px 0;
+        }
+        .content-section.alt-bg {
+            background-color: var(--sand-card);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 780px;
+            margin: 0 auto 50px;
+        }
+        .section-tag {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--river-clear);
+            margin-bottom: 10px;
+            display: block;
+        }
+        .section-title {
+            font-size: 2.2rem;
+            line-height: 1.25;
+            margin-bottom: 15px;
+        }
+
+        /* --- LOWKEY CARD IMAGE THUMBNAILS --- */
+        .card-image-wrap {
+            width: 100%;
+            height: 170px;
+            overflow: hidden;
+            border-radius: 4px;
+            margin-bottom: 18px;
+        }
+        .card-image-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .card-image-wrap:hover img {
+            transform: scale(1.04);
+        }
+
+        /* --- CRAFT SELECTION GRID --- */
+        .craft-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+        .craft-card {
+            background-color: var(--white);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+            border-top: 4px solid var(--river-clear);
+            transition: var(--transition-clean);
+        }
+        .craft-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+        }
+        .craft-card-body {
+            padding: 25px 22px 30px;
+        }
+        .craft-badge {
+            display: inline-block;
+            background-color: var(--forest-mid);
+            color: var(--sand-bg);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 4px 10px;
+            border-radius: 2px;
+            margin-bottom: 14px;
+        }
+        .craft-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: var(--forest-dark);
+        }
+
+        /* --- ITINERARY TIMELINE LAYOUT --- */
+        .itinerary-timeline {
+            max-width: 920px;
+            margin: 0 auto;
+        }
+        .itinerary-day-card {
+            background-color: var(--white);
+            border-radius: 6px;
+            padding: 35px 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+            border-left: 5px solid var(--river-clear);
+            transition: var(--transition-clean);
+        }
+        .itinerary-day-card:hover {
+            transform: translateX(4px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+        .day-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            padding-bottom: 14px;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .day-badge {
+            background-color: var(--forest-dark);
+            color: var(--white);
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 6px 14px;
+            border-radius: 4px;
+        }
+        .day-title {
+            font-size: 1.35rem;
+            color: var(--forest-dark);
+        }
+        .day-highlights-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+        .day-highlights-list li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+        .day-highlights-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 8px;
+            height: 8px;
+            background-color: var(--river-clear);
+            border-radius: 50%;
+        }
+        .meal-tag-container {
+            margin-top: 18px;
+            padding-top: 14px;
+            border-top: 1px dashed rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .meal-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--forest-light);
+            letter-spacing: 0.05em;
+        }
+        .meal-pill {
+            background-color: var(--sand-card);
+            color: var(--text-dark);
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 12px;
+        }
+
+        /* --- DINING & CAMP COMFORT GRID --- */
+        .dining-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 35px;
+        }
+        .dining-card {
+            background-color: var(--white);
+            padding: 30px 28px 35px;
+            border-radius: 6px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+            border-top: 4px solid var(--forest-light);
+        }
+        .dining-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: var(--forest-dark);
+        }
+
+        /* --- INCLUDED VS PACKING GRID --- */
+        .included-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+        }
+        .included-card {
+            background-color: var(--white);
+            padding: 30px 28px 35px;
+            border-radius: 6px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+            display: flex;
+            flex-direction: column;
+        }
+        .included-card.provided-box {
+            border-top: 4px solid var(--forest-light);
+        }
+        .included-card.bring-box {
+            border-top: 4px solid var(--river-clear);
+        }
+        .included-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 18px;
+        }
+        .check-list {
+            list-style: none;
+            flex-grow: 1;
+        }
+        .check-list li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+        }
+        .check-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--river-clear);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .btn-card-action {
+            display: inline-block;
+            margin-top: 22px;
+            background-color: var(--river-clear);
+            color: var(--white);
+            padding: 12px 24px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            text-decoration: none;
+            border-radius: 4px;
+            text-align: center;
+            transition: var(--transition-clean);
+            align-self: flex-start;
+        }
+        .btn-card-action:hover {
+            background-color: var(--forest-dark);
+            color: var(--white);
+        }
+
+        /* --- FAQ GRID --- */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+        .faq-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 6px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        }
+        .faq-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--forest-dark);
+        }
+
+        /* --- CALL TO ACTION (GUEST REVIEW STYLED LIGHT BOX) --- */
+        .cta-banner {
+            background: linear-gradient(to right, var(--forest-dark), var(--forest-mid));
+            padding: 85px 0;
+        }
+        .cta-light-box {
+            background-color: rgba(227, 227, 227, 0.95);
+            padding: 50px 40px;
+            border-radius: 6px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+            max-width: 820px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .cta-light-box h2 {
+            color: var(--forest-dark);
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+        .cta-light-box p {
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            max-width: 640px;
+            margin: 0 auto 28px;
+        }
+        .btn-cta-primary {
+            display: inline-block;
+            background-color: var(--river-clear);
+            color: var(--white);
+            padding: 14px 34px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            transition: var(--transition-clean);
+            border-radius: 4px;
+        }
+        .btn-cta-primary:hover {
+            background-color: var(--forest-dark);
+            color: var(--white);
+        }
+
+        /* --- FOOTER STRUCTURE --- */
+        .footer-block {
+            background-color: var(--forest-black);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 70px 0 30px;
+        }
+        .footer-columns {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        .footer-brand {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+        .footer-heading {
+            color: var(--white);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 20px;
+        }
+        .footer-links-list {
+            list-style: none;
+        }
+        .footer-links-list li {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+        .footer-links-list a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: var(--transition-clean);
+        }
+        .footer-links-list a:hover {
+            color: var(--white);
+        }
+        .footer-meta-row {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 25px;
+            font-size: 0.85rem;
+            text-align: center;
+            letter-spacing: 0.02em;
+        }
+
+        /* Scroll Animations Triggers */
+        .animate-scroll-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1), transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .animate-scroll-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- RESPONSIVE BREAKPOINTS --- */
+        @media (max-width: 992px) {
+            .utility-container {
+                display: none;
+            }
+            .nav-wrapper {
+                padding-top: 0px;
+            }
+            .mobile-hamburger-btn {
+                display: block;
+            }
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 320px;
+                height: 100vh;
+                background-color: var(--forest-dark);
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: flex-start;
+                padding: 110px 30px 40px;
+                transition: right 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+                box-shadow: -5px 0 30px rgba(0,0,0,0.3);
+                overflow-y: auto;
+                z-index: 100;
+            }
+            .nav-menu.is-active {
+                right: 0;
+            }
+            .nav-item {
+                margin: 12px 0;
+                width: 100%;
+            }
+            .nav-link {
+                font-size: 1.1rem;
+                width: 100%;
+                justify-content: space-between;
+            }
+            .dropdown-menu {
+                position: static;
+                transform: none !important;
+                box-shadow: none;
+                background: rgba(0,0,0,0.2);
+                border-top: none;
+                width: 100%;
+                display: none;
+            }
+            .nav-item.mobile-dropdown-open .dropdown-menu {
+                display: block;
+                opacity: 1 !important;
+                visibility: visible !important;
+            }
+            .dropdown-item {
+                color: rgba(255, 255, 255, 0.85);
+                padding: 12px 20px;
+                font-size: 0.95rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            }
+            .dropdown-item:hover {
+                background-color: rgba(255, 255, 255, 0.05);
+                color: var(--white);
+            }
+            .btn-nav-cta {
+                display: block;
+                text-align: center;
+                margin-top: 25px;
+                width: 100%;
+                background-color: var(--river-clear);
+                color: var(--white);
+            }
+            .facts-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            .fact-item {
+                border-right: none;
+                border-bottom: 1px solid rgba(0,0,0,0.08);
+                padding-bottom: 15px;
+            }
+            .fact-item:nth-child(3), .fact-item:nth-child(4) {
+                border-bottom: none;
+            }
+            .craft-grid, .dining-grid, .included-grid, .faq-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-columns {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .facts-grid {
+                grid-template-columns: 1fr;
+            }
+            .fact-item {
+                border-bottom: 1px solid rgba(0,0,0,0.08);
+            }
+            .fact-item:last-child {
+                border-bottom: none;
+            }
+            .itinerary-day-card {
+                padding: 25px 20px;
+            }
+        }
+
+                * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: 'Outfit', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--sand-bg);
+            overflow-x: hidden;
+        }
+
+        body {
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        p, li {
+            font-family: 'Lora', serif;
+            font-size: 1.05rem;
+            line-height: 1.75;
+            color: var(--text-muted);
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            color: var(--forest-dark);
+            letter-spacing: -0.02em;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        /* --- TOP INFORMATION BAR --- */
+        .utility-bar {
+            background-color: var(--forest-black);
+            color: var(--sand-bg);
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            z-index: 100;
+        }
+        .utility-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 40px;
+        }
+        .utility-bar a {
+            color: var(--sand-bg);
+            text-decoration: none;
+            margin-left: 20px;
+            transition: var(--transition-clean);
+        }
+        .utility-bar a:hover {
+            color: var(--white);
+            text-decoration: underline;
+        }
+
+        /* --- MAIN NAVIGATION BAR --- */
+/* --- MAIN NAVIGATION BAR --- */
+        .nav-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 99;
+            background: linear-gradient(to bottom, rgba(8, 20, 12, 1), rgba(8, 20, 12, 0));
+            padding-top: 40px; /* Desktop default */
+            transition: padding 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* Mobile styles */
+        @media (max-width: 768px) {
+            .nav-wrapper {
+                padding-top: 5px; /* Mobile adjustment */
+            }
+        }
+
+        /* Background overlay (hidden initially) */
+        .nav-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(8, 20, 12, 1), rgba(8, 20, 12, 0.96));
+            opacity: 0; /* Invisible background at page load */
+            transition: opacity 0.35s ease;
+            z-index: -1;
+        }
+
+        /* Scrolled state */
+        .nav-wrapper.fixed-nav {
+            padding-top: 3px; /* Adjusts top padding smoothly on scroll */
+        }
+
+        .nav-wrapper.fixed-nav::before {
+            opacity: 1; /* Smoothly fades background gradient in */
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+            position: relative;
+        }
+        
+        .logo-block {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            z-index: 101;
+        }
+        .logo-img {
+            height: 46px;
+            width: auto;
+            display: block;
+        }
+        .logo-text-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .logo-title {
+            color: var(--white);
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+        .logo-sub {
+            display: block;
+            color: var(--sand-bg);
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.25em;
+        }
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-item {
+            position: relative;
+            margin: 0 16px;
+        }
+        .nav-link {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 10px 0;
+            letter-spacing: 0.02em;
+            transition: var(--transition-clean);
+            display: inline-flex;
+            align-items: center;
+        }
+        .nav-link:hover {
+            color: var(--sand-bg);
+            opacity: 0.85;
+        }
+
+        .nav-link.has-submenu::after {
+            content: '';
+            display: inline-block;
+            margin-left: 8px;
+            width: 5px;
+            height: 5px;
+            border-right: 1.5px solid currentColor;
+            border-bottom: 1.5px solid currentColor;
+            transform: translateY(-2px) rotate(45deg);
+            transition: var(--transition-clean);
+            opacity: 0.8;
+        }
+        .nav-item:hover .nav-link.has-submenu::after {
+            transform: translateY(1px) rotate(225deg);
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background-color: var(--white);
+            min-width: 270px;
+            border-top: 3px solid var(--river-clear);
+            box-shadow: 0 15px 30px rgba(8, 20, 12, 0.08);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition-clean);
+            padding: 12px 0;
+        }
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+        .dropdown-item {
+            display: block;
+            padding: 10px 24px;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition-clean);
+        }
+        .dropdown-item:hover {
+            background-color: var(--sand-card);
+            color: var(--river-deep);
+            padding-left: 28px;
+        }
+
+        .btn-nav-cta {
+            background-color: var(--white);
+            color: var(--forest-dark);
+            padding: 10px 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            transition: var(--transition-clean);
+            border: 1px solid transparent;
+        }
+        .btn-nav-cta:hover {
+            background-color: transparent;
+            color: var(--white);
+            border-color: var(--white);
+        }
+
+        .mobile-hamburger-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            width: 30px;
+            height: 24px;
+            position: relative;
+            z-index: 101;
+        }
+        .mobile-hamburger-btn span {
+            display: block;
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background: var(--white);
+            border-radius: 2px;
+            opacity: 1;
+            left: 0;
+            transform: rotate(0deg);
+            transition: .25s ease-in-out;
+        }
+        .mobile-hamburger-btn span:nth-child(1) { top: 0px; }
+        .mobile-hamburger-btn span:nth-child(2) { top: 10px; }
+        .mobile-hamburger-btn span:nth-child(3) { top: 20px; }
+
+        .mobile-hamburger-btn.is-active span:nth-child(1) { top: 10px; transform: rotate(135deg); }
+        .mobile-hamburger-btn.is-active span:nth-child(2) { opacity: 0; left: -60px; }
+        .mobile-hamburger-btn.is-active span:nth-child(3) { top: 10px; transform: rotate(-135deg); }
+
+        /* --- HERO HEADER SECTION --- */
+        .hero-section {
+            position: relative;
+            height: 75vh;
+            min-height: 550px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            overflow: hidden;
+            background-color: var(--forest-black);
+            text-align: center;
+        }
+        .hero-video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        .hero-video-bg video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(8, 20, 12, 0.6);
+            z-index: 2;
+        }
+        .hero-content-block {
+            position: relative;
+            z-index: 3;
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero-subtitle {
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--sand-bg);
+            margin-bottom: 15px;
+            display: block;
+        }
+        .hero-section h1 {
+            color: var(--white);
+            font-size: 3.5rem;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        .hero-section p {
+            color: var(--sand-bg);
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin-bottom: 35px;
+            opacity: 0.95;
+        }
+        
+        .hero-action-row {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background-color: var(--river-clear);
+            color: var(--white);
+            padding: 14px 30px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            transition: var(--transition-clean);
+            border: 2px solid var(--river-clear);
+            border-radius: 4px;
+        }
+        .btn-primary:hover {
+            background-color: var(--river-deep);
+            border-color: var(--river-deep);
+            transform: translateY(-2px);
+        }
+        .btn-story-trigger {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: var(--white);
+            padding: 14px 30px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            transition: var(--transition-clean);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 4px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-story-trigger:hover {
+            background-color: var(--white);
+            color: var(--forest-dark);
+            border-color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .wave-divider-wrap {
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            line-height: 0;
+            z-index: 4;
+        }
+        .wave-divider-wrap svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 45px;
+        }
+        .wave-divider-wrap .wave-path {
+            fill: var(--sand-bg);
+        }
+
+        /* --- CONTENT SECTION DESIGN PATTERNS --- */
+        .content-section {
+            padding: 95px 0;
+        }
+        .bg-white {
+            background-color: var(--white);
+        }
+        .section-header-layout {
+            max-width: 800px;
+            margin-bottom: 55px;
+        }
+        .section-tag {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--river-clear);
+            margin-bottom: 10px;
+            display: block;
+        }
+        .main-heading-style {
+            font-size: 2.3rem;
+            margin-bottom: 20px;
+            line-height: 1.25;
+        }
+        
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .detail-card {
+            background-color: var(--sand-card);
+            padding: 40px 30px;
+            border-top: 3px solid var(--river-clear);
+            transition: var(--transition-clean);
+        }
+        .detail-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.04);
+        }
+        .detail-card h4 {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            color: var(--forest-dark);
+        }
+
+        .outfitter-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+        .outfitter-block h3 {
+            font-size: 1.35rem;
+            margin-bottom: 12px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            padding-bottom: 8px;
+        }
+        
+        /* --- DYNAMIC PARALLAX DIVIDER PANEL --- */
+        .image-parallax-panel {
+            height: 480px;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+        .parallax-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(8, 20, 12, 0.35);
+        }
+
+        /* --- REVIEWS PANEL WITH OVERFLOW PREVIEW CAROUSEL --- */
+        .quotes-section {
+            padding: 95px 0;
+            background-color: var(--forest-dark);
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .quotes-section h2 {
+            color: var(--white);
+            font-size: 2.2rem;
+            margin-bottom: 45px;
+        }
+        
+        .carousel-view-window {
+            position: relative;
+            width: 100%;
+            max-width: 760px;
+            margin: 0 auto;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .quote-slide {
+            position: absolute;
+            width: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(0) scale(0.85);
+            transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.45s ease, visibility 0.45s;
+            z-index: 1;
+            pointer-events: none;
+            
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            background-color: rgba(33, 57, 42, 0.95);
+            padding: 50px 45px;
+            border-radius: 6px;
+        }
+        
+        .quote-slide.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0) scale(1);
+            z-index: 3;
+            pointer-events: auto;
+        }
+        
+        .quote-slide.prev {
+            opacity: 0.35;
+            visibility: visible;
+            transform: translateX(-108%) scale(0.88);
+            z-index: 2;
+        }
+        
+        .quote-slide.next {
+            opacity: 0.35;
+            visibility: visible;
+            transform: translateX(108%) scale(0.88);
+            z-index: 2;
+        }
+        
+        .quote-paragraph {
+            font-family: 'Lora', serif;
+            font-style: italic;
+            font-size: 1.25rem;
+            line-height: 1.8;
+            color: var(--sand-bg);
+            margin-bottom: 25px;
+        }
+        .quote-byline {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: var(--river-clear);
+        }
+
+        .carousel-nav-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            margin-top: 45px;
+            position: relative;
+            z-index: 10;
+        }
+        .carousel-arrow-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: var(--white);
+            width: 46px;
+            height: 46px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition-clean);
+            border-radius: 4px;
+        }
+        .carousel-arrow-btn:hover {
+            background-color: var(--white);
+            color: var(--forest-dark);
+            border-color: var(--white);
+        }
+        .carousel-arrow-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2.5;
+        }
+
+        /* --- FOOTER STRUCTURE --- */
+        .footer-block {
+            background-color: var(--forest-black);
+            color: rgba(255, 255, 255, 0.65);
+            padding: 80px 0 35px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .footer-columns {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 50px;
+        }
+        .footer-logo-title {
+            color: var(--white);
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            letter-spacing: 0.05em;
+        }
+        .footer-heading {
+            color: var(--white);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 20px;
+        }
+        .footer-links-list {
+            list-style: none;
+        }
+        .footer-links-list li {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+        .footer-links-list a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: var(--transition-clean);
+        }
+        .footer-links-list a:hover {
+            color: var(--white);
+        }
+        .footer-meta-row {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 25px;
+            font-size: 0.85rem;
+            text-align: center;
+            letter-spacing: 0.02em;
+        }
+
+        /* Scroll Animations Triggers */
+        .animate-scroll-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1), transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .animate-scroll-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- VIDEO MODAL WINDOW LAYERS --- */
+        .story-video-modal {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(8, 20, 12, 0.95);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition-clean);
+        }
+        .story-video-modal.modal-open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-inner-bounds {
+            width: 90%;
+            max-width: 960px;
+            aspect-ratio: 16/9;
+            position: relative;
+            background-color: var(--forest-black);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .modal-close-trigger {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: transparent;
+            border: none;
+            color: var(--white);
+            font-size: 1.8rem;
+            cursor: pointer;
+            font-family: sans-serif;
+        }
+        .modal-inner-bounds iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* --- MOBILE SCREEN RESPONSIVE BOUNDS --- */
+        @media (max-width: 992px) {
+            .mobile-hamburger-btn {
+                display: block;
+            }
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 320px;
+                height: 100vh;
+                background-color: var(--forest-dark);
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: flex-start;
+                padding: 110px 30px 40px;
+                transition: right 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+                box-shadow: -5px 0 30px rgba(0,0,0,0.3);
+                overflow-y: auto;
+                z-index: 100;
+            }
+            .nav-menu.is-active {
+                right: 0;
+            }
+            .nav-item {
+                margin: 12px 0;
+                width: 100%;
+            }
+            .nav-link {
+                font-size: 1.1rem;
+                width: 100%;
+                justify-content: space-between;
+                padding: 12px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+            
+            .nav-item:hover .dropdown-menu {
+                transform: none !important;
+                opacity: 0 !important;
+                visibility: hidden !important;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                transform: none !important;
+                display: block;
+                max-height: 0;
+                opacity: 0;
+                visibility: hidden;
+                overflow: hidden;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.15);
+                box-shadow: none;
+                padding: 0 0;
+                margin-top: 0;
+                border-top: none;
+                border-left: 3px solid var(--river-clear);
+                border-radius: 0 4px 4px 0;
+                transition: max-height 0.38s cubic-bezier(0.25, 1, 0.5, 1),
+                            opacity 0.38s ease,
+                            padding 0.38s cubic-bezier(0.25, 1, 0.5, 1),
+                            margin-top 0.38s cubic-bezier(0.25, 1, 0.5, 1);
+            }
+            
+            .nav-item.mobile-dropdown-open .dropdown-menu,
+            .nav-item.mobile-dropdown-open:hover .dropdown-menu {
+                max-height: 350px !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                padding: 4px 0 !important;
+                margin-top: 6px !important;
+            }
+            
+            .dropdown-item {
+                color: rgba(255, 255, 255, 0.85);
+                padding: 12px 20px;
+                font-size: 0.95rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            }
+            .dropdown-item:last-child {
+                border-bottom: none;
+            }
+            
+            .dropdown-item:hover {
+                background-color: rgba(255, 255, 255, 0.05) !important;
+                padding-left: 20px !important; 
+                color: var(--white) !important;
+                transform: none !important;
+            }
+            
+            .btn-nav-cta {
+                display: block;
+                text-align: center;
+                margin-top: 25px;
+                width: 100%;
+                background-color: var(--river-clear);
+                color: var(--white);
+            }
+            .btn-nav-cta:hover {
+                background-color: var(--river-deep);
+            }
+            
+            .outfitter-grid { grid-template-columns: 1fr; gap: 30px; }
+            .details-grid { grid-template-columns: 1fr; gap: 25px; }
+            .footer-columns { grid-template-columns: 1fr; gap: 40px; }
+            .hero-section h1 { font-size: 2.3rem; }
+            
+            .carousel-view-window { min-height: 380px; overflow: hidden; }
+            .quote-slide { padding: 35px 25px; transform: scale(1) translateX(0); opacity: 0; }
+            .quote-slide.active { opacity: 1; display: block; }
+            .quote-slide.prev, .quote-slide.next { display: none; }
+            
+            .quote-paragraph { font-size: 1.1rem; }
+            .utility-container { display: none; }
+            .nav-wrapper { top: 0; }
+        }
+        /* Hide mobile-only dropdown items by default (Desktop) */
+        .dropdown-item.mobile-only {
+            display: none;
+        }
+
+        /* Show mobile-only dropdown items on smaller screens */
+        @media (max-width: 992px) {
+            .dropdown-item.mobile-only {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="utility-bar">
+        <div class="container utility-container">
+            <div>Operating under special use permits from the U.S. Forest Service</div>
+            <div>
+                <a href="tel:18004531482">1-800-453-1482</a>
+                <a href="mailto:guideinfo@riverguide.com">guideinfo@riverguide.com</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-wrapper" id="globalNavbar">
+        <nav class="container nav-container">
+            <a href="/" class="logo-block">
+                <img src="/images/AWAlogo.webp" alt="AWA Logo" class="logo-img">
+                <div class="logo-text-group">
+                    <div class="logo-title">Action Whitewater</div>
+                    <div class="logo-sub">Adventures</div>
+                </div>
+            </a>
+            
+            <button class="mobile-hamburger-btn" id="mobileMenuBtn" aria-label="Toggle Navigation Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-menu" id="navMenuDropdownTrack">
+                <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+                <li class="nav-item">
+                    <a href="/main-salmon-trips" class="nav-link has-submenu">Main Salmon Trips</a>
+                    <div class="dropdown-menu">
+                        <a href="/why-choose-us" class="dropdown-item">Why Choose Us</a>
+                        <a href="/trip-details" class="dropdown-item">5-Day Trip Details</a>
+                        <a href="/trip-rates" class="dropdown-item">Rates & Schedules</a>
+                        <a href="/travel-packages" class="dropdown-item">Travel Packages & Shuttles</a>
+                        <a href="/main-salmon-trips" class="dropdown-item mobile-only">Main Salmon History</a>
+
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="/trip-preparation" class="nav-link has-submenu">Trip Preparation</a>
+                    <div class="dropdown-menu">
+                        <a href="/checklist" class="dropdown-item">Before You Go</a>
+                        <a href="/packing-list" class="dropdown-item">Packing List</a>
+                        <a href="/trip-preparation" class="dropdown-item mobile-only">Meet the River Boss</a>
+
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="/trip-rates" class="btn-nav-cta">Reservations</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <header class="page-header">
+        <div class="container">
+            <span class="page-header-subtitle">5-Day Main Salmon River Expedition</span>
+            <h1>5-Day Wilderness Trip Details</h1>
+            <p class="page-header-lead">Journey 82 miles through Idaho's legendary River of No Return canyon, featuring thrilling Class III and IV whitewater, white sand beach camps, geothermal hot springs, and freshly cooked Dutch oven meals.</p>
+        </div>
+        
+    </header>
+
+    <div class="container">
+        <div class="trip-facts-bar animate-scroll-in">
+            <div class="facts-grid">
+                <div class="fact-item">
+                    <span class="fact-label">Expedition Length</span>
+                    <div class="fact-value">5 Days / 4 Nights</div>
+                </div>
+                <div class="fact-item">
+                    <span class="fact-label">River Miles Covered</span>
+                    <div class="fact-value">82 Miles Total</div>
+                </div>
+                <div class="fact-item">
+                    <span class="fact-label">Whitewater Level</span>
+                    <div class="fact-value">Class III & IV Rapids</div>
+                </div>
+                <div class="fact-item">
+                    <span class="fact-label">Meeting Location</span>
+                    <div class="fact-value">Salmon, Idaho</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="section-header animate-scroll-in">
+                <span class="section-tag">Choose Your River Experience</span>
+                <h2 class="section-title">Versatile Rafting Options Every Day</h2>
+                <p>Every guest can choose how they want to ride the river each day. You can mix and match between different craft styles throughout your 5-day journey.</p>
+            </div>
+
+            <div class="craft-grid">
+                <div class="craft-card animate-scroll-in">
+                    <div class="card-image-wrap">
+                        <img src="/images/AWAheader2.jpg" alt="Guided Oar Boat Rafting on Salmon River">
+                    </div>
+                    <div class="craft-card-body">
+                        <span class="craft-badge">Most Popular</span>
+                        <h3>Guided Oar Boats</h3>
+                        <p>Sit back, relax, and let your expert guide handle the oars. Perfect for soaking in the scenery, taking photos, and navigating big wave trains with maximum comfort.</p>
+                    </div>
+                </div>
+
+                <div class="craft-card animate-scroll-in">
+                    <div class="card-image-wrap">
+                        <img src="/images/AWAheader3.jpg" alt="Guided Paddle Boat Crew">
+                    </div>
+                    <div class="craft-card-body">
+                        <span class="craft-badge">High Energy</span>
+                        <h3>Guided Paddle Boats</h3>
+                        <p>Join a team of 6 to 8 paddlers working together under the direct leadership of a professional guide calling commands through major rapids like Black Creek and Bailee.</p>
+                    </div>
+                </div>
+
+                <div class="craft-card animate-scroll-in">
+                    <div class="card-image-wrap">
+                        <img src="/images/AWAheader.jpg" alt="Ducky">
+                    </div>
+                    <div class="craft-card-body">
+                        <span class="craft-badge">Independent Thrill</span>
+                        <h3>Inflatable Kayaks ("Duckies")</h3>
+                        <p>Take full control of your own single or double inflatable kayak in calm pools and medium rapids. A fun way to get close to the water under guide supervision.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section class="content-section alt-bg">
+    <div class="container">
+        <div class="section-header animate-scroll-in">
+            <span class="section-tag">Day-by-Day Journey</span>
+            <h2 class="section-title">5-Day Sample Wilderness Itinerary</h2>
+            <p>A preview of a typical 5-day Main Salmon River trip. Campsite locations vary by water levels and group preference.</p>
+        </div>
+
+        <div class="itinerary-timeline">
+
+            <div class="itinerary-day-card animate-scroll-in">
+                <div class="day-header-row">
+                    <span class="day-badge">Day 0</span>
+                    <h3 class="day-title">Orientation in Salmon, Idaho</h3>
+                </div>
+                <p>Meet your lead river guides the evening before launch for final preparations.</p>
+                <ul class="day-highlights-list">
+                    <li>Pre-trip orientation and safety briefing</li>
+                    <li>Waterproof dry bag distribution</li>
+                    <li>Hotel stay in Salmon, Idaho</li>
+                </ul>
+            </div>
+
+            <div class="itinerary-day-card animate-scroll-in">
+                <div class="day-header-row">
+                    <span class="day-badge">Day 1</span>
+                    <h3 class="day-title">Launch Day & Upper Canyon Rapids</h3>
+                </div>
+                <p>Shuttle from Salmon to the Corn Creek put-in, load gear, and launch into the canyon.</p>
+                <ul class="day-highlights-list">
+                    <li>Scenic shuttle ride with a quick store stop</li>
+                    <li>Exciting upper canyon whitewater rapids</li>
+                    <li>Riverside beach camping and relaxation</li>
+                </ul>
+                <div class="meal-tag-container">
+                    <span class="meal-label">Included Meals:</span>
+                    <span class="meal-pill">Deli Sandwiches Lunch</span>
+                    <span class="meal-pill">Steak Dinner</span>
+                    <span class="meal-pill">Strawberry Shortcake Dessert</span>
+                </div>
+            </div>
+
+            <div class="itinerary-day-card animate-scroll-in">
+                <div class="day-header-row">
+                    <span class="day-badge">Day 2</span>
+                    <h3 class="day-title">Black Creek Rapid & Hot Springs</h3>
+                </div>
+                <p>Enjoy morning hot coffee, tackle big whitewater, and soak in natural hot springs.</p>
+                <ul class="day-highlights-list">
+                    <li>Navigate Black Creek and Bailee Rapids</li>
+                    <li>Soak in natural geothermal hot springs</li>
+                    <li>Camp games and evening relaxation</li>
+                </ul>
+                <div class="meal-tag-container">
+                    <span class="meal-label">Included Meals:</span>
+                    <span class="meal-pill">French Toast and Pork</span>
+                    <span class="meal-pill">Tuna Salad Lunch</span>
+                    <span class="meal-pill">Pasta Dinner</span>
+                    <span class="meal-pill">Peach Cobbler Dessert</span>
+                </div>
+            </div>
+
+            <div class="itinerary-day-card animate-scroll-in">
+                <div class="day-header-row">
+                    <span class="day-badge">Day 3</span>
+                    <h3 class="day-title">Historic Ghost Town & Buckskin Bill's</h3>
+                </div>
+                <p>Paddle continuous rapids and take guided shore excursions to historic pioneer homesteads.</p>
+                <ul class="day-highlights-list">
+                    <li>Hike through an authentic mountain ghost town</li>
+                    <li>Visit historic Buckskin Bill's ranch for ice cream and history</li>
+                    <li>Sandy beach camp in the canyon</li>
+                </ul>
+                <div class="meal-tag-container">
+                    <span class="meal-label">Included Meals:</span>
+                    <span class="meal-pill">Beignets and Omelettes</span>
+                    <span class="meal-pill">Riverside Deli Lunch</span>
+                    <span class="meal-pill">Gourmet Burgers</span>
+                    <span class="meal-pill">Cheesecake Dessert</span>
+                </div>
+            </div>
+
+            <div class="itinerary-day-card animate-scroll-in">
+                <div class="day-header-row">
+                    <span class="day-badge">Day 4</span>
+                    <h3 class="day-title">Floating, Swimming & Talent Show</h3>
+                </div>
+                <p>Relax with calm river floats, canyon swimming, and classic beach camp entertainment.</p>
+                <ul class="day-highlights-list">
+                    <li>Calm floating stretches and river swimming</li>
+                    <li>Beach camp activities</li>
+                    <li>Evening wilderness talent show</li>
+                </ul>
+                <div class="meal-tag-container">
+                    <span class="meal-label">Included Meals:</span>
+                    <span class="meal-pill">Pancakes and Bacon</span>
+                    <span class="meal-pill">Picnic Lunch</span>
+                    <span class="meal-pill">Chicken Fajitas Dinner</span>
+                    <span class="meal-pill">Chocolate Cake Dessert</span>
+                </div>
+            </div>
+
+            <div class="itinerary-day-card animate-scroll-in">
+                <div class="day-header-row">
+                    <span class="day-badge">Day 5</span>
+                    <h3 class="day-title">Lower Canyon Float & Charter Return</h3>
+                </div>
+                <p>Enjoy a final morning float through lower rapids to Carey Creek take-out before returning home.</p>
+                <ul class="day-highlights-list">
+                    <li>Scenic lower canyon river float</li>
+                    <li>De-rig rafts at Carey Creek take-out</li>
+                    <li>Charter transfer back to McCall</li>
+                </ul>
+                <div class="meal-tag-container">
+                    <span class="meal-label">Included Meals:</span>
+                    <span class="meal-pill">Bagels, Eggs, and Sausage</span>
+                    <span class="meal-pill">Take-Out Deli Lunch</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="section-header animate-scroll-in">
+                <span class="section-tag">Wilderness Living Standard</span>
+                <h2 class="section-title">Fresh Dining & Camp Comfort</h2>
+                <p>We believe multi-day wilderness rafting should be comfortable, clean, and delicious. Here is what you can expect in camp each day.</p>
+            </div>
+
+            <div class="dining-grid">
+                <div class="dining-card animate-scroll-in">
+                    <h3>Dutch Oven Wilderness Cuisine</h3>
+                    <p>Our guides take great pride in preparing fresh, hearty meals using clean propane stoves and campfire Dutch ovens. Every meal includes fresh ingredients, cold beverages, and warm homemade desserts every evening.</p>
+                </div>
+
+                <div class="dining-card animate-scroll-in">
+                    <h3>Clean Environmental Equipment</h3>
+                    <p>We provide heavy-duty 3-person tents, cozy sleeping bags, comfortable cots, solar UV purified drinking water, and clean portable restroom facilities that are set up daily in private spots at camp.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section alt-bg parallax-section" style="background-image: linear-gradient(rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.72)), url('/images/AWAheader2.jpg'); background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; color: #ffffff;">
+    <div class="container">
+        <div class="section-header animate-scroll-in" style="text-align: center;">
+        <span class="section-tag" style="color: #4fd1c5; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.85); font-weight: 700; display: inline-block; margin-bottom: 8px;">Trip Preparation</span>
+        <h2 class="section-title" style="color: #ffffff; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9); font-weight: 800; margin-bottom: 12px;">What Is Provided & What To Bring</h2>
+        <p style="color: #f1f5f9; text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85); max-width: 650px; margin: 0 auto; font-size: 1.1rem; line-height: 1.6;">We supply all essential river and camping equipment so you can travel light and hassle-free.</p>
+        </div>
+
+        <div class="included-grid">
+        <div class="included-card provided-box animate-scroll-in">
+            <h3>What We Provide</h3>
+            <ul class="check-list">
+            <li>All rafting gear, oars, paddle boats, and inflatable kayaks</li>
+            <li>Coast Guard approved life jackets (PFDs) and safety equipment</li>
+            <li>Spacious 3-person tents, cozy sleeping bags, and comfortable cots</li>
+            <li>Waterproof dry bags for personal clothing and camera equipment</li>
+            <li>All meals, snacks, cold drinks, and solar UV purified water</li>
+            <li>Professional, licensed river guides and wilderness First Responders</li>
+            </ul>
+        </div>
+
+        <div class="included-card bring-box animate-scroll-in">
+            <h3>What You Bring</h3>
+            <ul class="check-list">
+            <li>Quick-drying swimsuits, river shorts, and sun shirts</li>
+            <li>Sturdy river sandals or water shoes with heel straps</li>
+            <li>Sun protection including hat, sunglasses, and reef-safe sunscreen</li>
+            <li>Refillable water bottle with clip or carabiner</li>
+            <li>Personal toiletries and comfortable evening camp clothing</li>
+            </ul>
+            <a href="/packing-list" class="btn-card-action">View Full Packing List</a>
+        </div>
+        </div>
+    </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="section-header animate-scroll-in">
+                <span class="section-tag">Helpful Details</span>
+                <h2 class="section-title">Frequently Asked Questions</h2>
+            </div>
+
+            <div class="faq-grid">
+                <div class="faq-card animate-scroll-in">
+                    <h4>Do I need previous whitewater experience?</h4>
+                    <p>No previous experience is required. Our professional guides handle all boat navigation and provide complete safety briefings before entering any whitewater rapids.</p>
+                </div>
+
+                <div class="faq-card animate-scroll-in">
+                    <h4>What are the age requirements for kids?</h4>
+                    <p>Children as young as 4 to 6 years old can join Main Salmon River trips depending on their independence level. It is one of North America's premier family multi-day rafting trips.</p>
+                </div>
+
+                <div class="faq-card animate-scroll-in">
+                    <h4>How do car shuttles and travel work?</h4>
+                    <p>We coordinate charter flights from Boise to Salmon, Idaho as well as vehicle shuttle transfers to return your car to McCall by the time your trip ends.</p>
+                </div>
+
+                <div class="faq-card animate-scroll-in">
+                    <h4>How do group discounts work?</h4>
+                    <p>Groups of 8 or more adults booking together automatically receive a 10% discount on standard trip rates. Contact our office to secure charter launch dates.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-banner">
+        <div class="container">
+            <div class="cta-light-box animate-scroll-in">
+                <h2>Ready to Join Us on the River?</h2>
+                <p>Explore rates, trip dates, and complete travel logistics to secure your seats on the legendary Main Salmon River.</p>
+                <a href="/trip-rates" class="btn-cta-primary">View Rates & Availability</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-block">
+        <div class="container">
+            <div class="footer-columns">
+                <div>
+                    <div class="footer-brand">Action Whitewater Adventures</div>
+                    <p style="color: rgba(255,255,255,0.45); font-size: 0.95rem;">Providing all-inclusive multi-day wilderness river rafting trips down the historic canyons of the Main Salmon River since 1978.</p>
+                </div>
+                <div>
+                    <h5 class="footer-heading">Expeditions</h5>
+                    <ul class="footer-links-list">
+                        <li><a href="/trip-rates">5-Day Trip Rates</a></li>
+                        <li><a href="/trip-details">Itinerary Details</a></li>
+                        <li><a href="/packing-list">Packing Guidance</a></li>
+                        <li><a href="/travel-packages">Travel Shuttles</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="footer-heading">Inquiries</h5>
+                    <ul class="footer-links-list">
+                        <li style="color: rgba(255, 255, 255, 0.65);">Toll Free: <a href="tel:18004531482" style="color:inherit;">1-800-453-1482</a></li>
+                        <li style="color: rgba(255, 255, 255, 0.65);">Email: <a href="mailto:guideinfo@riverguide.com" style="color:inherit;">guideinfo@riverguide.com</a></li>
+                        <li style="color: rgba(255, 255, 255, 0.65);">Web: <a href="https://riverguide.com" style="color:inherit;">riverguide.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-meta-row">
+                <p>&copy; 2026 Action Whitewater Adventures. All rights reserved. Outfitted under authorization from the United States Forest Service and the Bureau of Land Management.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sticky Navigation Handler
+        const navBar = document.getElementById('globalNavbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) {
+                navBar.classList.add('fixed-nav');
+            } else {
+                navBar.classList.remove('fixed-nav');
+            }
+        });
+
+        // Mobile Hamburger Menu Navigation Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenuDropdownTrack = document.getElementById('navMenuDropdownTrack');
+        const submenuLinks = document.querySelectorAll('.nav-link.has-submenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('is-active');
+            navMenuDropdownTrack.classList.toggle('is-active');
+        });
+
+        submenuLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (window.innerWidth <= 992) {
+                    e.preventDefault();
+                    const parentItem = link.parentElement;
+                    
+                    submenuLinks.forEach(item => {
+                        if(item.parentElement !== parentItem) {
+                            item.parentElement.classList.remove('mobile-dropdown-open');
+                        }
+                    });
+                    
+                    parentItem.classList.toggle('mobile-dropdown-open');
+                }
+            });
+        });
+
+        // Scroll Reveal Animations
+        const observerOptions = {
+            threshold: 0.12
+        };
+
+        const scrollObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-scroll-in').forEach(el => {
+            scrollObserver.observe(el);
+        });
+    </script>
+</body>
+</html>
