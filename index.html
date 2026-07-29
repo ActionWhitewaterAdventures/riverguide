@@ -875,6 +875,36 @@
                 display: block;
             }
         }
+            @media (max-width: 992px) {
+        /* 1. Reduce excessive top/bottom section padding */
+        .quotes-section {
+            padding: 50px 0;
+        }
+
+        /* 2. Allow the carousel wrapper to expand naturally based on slide height */
+        .carousel-view-window {
+            min-height: auto;
+            overflow: visible;
+        }
+
+        /* 3. Switch mobile slides to relative positioning so they push down the nav arrows */
+        .quote-slide {
+            position: relative;
+            display: none;
+            padding: 28px 18px; /* Slightly tighter internal padding */
+            transform: none !important;
+        }
+
+        .quote-slide.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* 4. Ensure nav arrows maintain clean spacing below the active card */
+        .carousel-nav-controls {
+            margin-top: 25px;
+        }
+    }
     </style>
 </head>
 <body>
