@@ -875,36 +875,55 @@
                 display: block;
             }
         }
-            @media (max-width: 992px) {
-        /* 1. Reduce excessive top/bottom section padding */
-        .quotes-section {
-            padding: 50px 0;
-        }
+        @media (max-width: 992px) {
+            .quotes-section {
+                padding: 50px 0;
+            }
 
-        /* 2. Allow the carousel wrapper to expand naturally based on slide height */
-        .carousel-view-window {
-            min-height: auto;
-            overflow: visible;
-        }
+            /* 1. Use CSS Grid so the container automatically locks to the height of the longest quote */
+            .carousel-view-window {
+                display: grid;
+                grid-template-columns: 1fr;
+                min-height: auto;
+                overflow: visible;
+            }
 
-        /* 3. Switch mobile slides to relative positioning so they push down the nav arrows */
-        .quote-slide {
-            position: relative;
-            display: none;
-            padding: 28px 18px; /* Slightly tighter internal padding */
-            transform: none !important;
-        }
+            /* 2. Stack all slides on top of each other in the same grid cell */
+            .quote-slide {
+                grid-area: 1 / 1;
+                position: relative;
+                display: block !important; /* Override desktop overrides */
+                padding: 30px 20px;
+                
+                /* Fade setup */
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+                transform: none !important;
+                transition: opacity 0.4s ease, visibility 0.4s ease;
+            }
 
-        .quote-slide.active {
-            display: block;
-            opacity: 1;
-        }
+            /* 3. Smoothly fade in active slide */
+            .quote-slide.active {
+                opacity: 1;
+                visibility: visible;
+                pointer-events: auto;
+            }
 
-        /* 4. Ensure nav arrows maintain clean spacing below the active card */
-        .carousel-nav-controls {
-            margin-top: 25px;
+            /* 4. Ensure non-active slides remain in grid calculation but hidden */
+            .quote-slide.prev,
+            .quote-slide.next {
+                display: block !important;
+                opacity: 0;
+                visibility: hidden;
+                transform: none !important;
+            }
+
+            /* 5. Navigation arrows remain anchored directly below the grid container */
+            .carousel-nav-controls {
+                margin-top: 25px;
+            }
         }
-    }
     </style>
 </head>
 <body>
