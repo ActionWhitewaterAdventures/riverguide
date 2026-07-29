@@ -1005,6 +1005,28 @@
         background-position: center !important;
     }
 }
+
+/* --- MOBLE-SAFE PARALLAX (iOS Safari Compatible) --- */
+.parallax-section {
+    position: relative;
+    clip-path: inset(0 0 0 0);
+    color: #ffffff;
+}
+
+.parallax-section::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.72)), url('/images/TripDetailsParallax.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+    will-change: transform;
+}
     </style>
 </head>
 <body>
@@ -1284,7 +1306,7 @@
         </div>
     </section>
 
-    <section class="content-section alt-bg parallax-section" style="background-image: linear-gradient(rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.72)), url('/images/TripDetailsParallax.jpg'); background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; color: #ffffff;">
+    <section class="content-section alt-bg parallax-section" 
         <div class="container">
             <div class="section-header animate-scroll-in" style="text-align: center;">
                 <span class="section-tag" style="color: #4fd1c5; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.85); font-weight: 700; display: inline-block; margin-bottom: 8px;">Trip Preparation</span>
