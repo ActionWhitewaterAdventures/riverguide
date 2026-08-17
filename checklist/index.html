@@ -1610,6 +1610,26 @@
                 display: block;
             }
         }
+
+                /* Mobile Styles (Screens under 768px wide) */
+        @media (max-width: 767px) {
+        .logo-block {
+            display: flex;
+            align-items: center; /* Keeps logo icon and text aligned vertically */
+        }
+
+        .logo-text-group {
+            display: flex;
+            flex-direction: column; /* Stacks top text over bottom text */
+            justify-content: center;
+            line-height: 1.1; /* Prevents text lines from overlapping */
+        }
+
+        .logo-title {
+            font-size: 0.9rem; /* Adjust font size to fit your header space */
+            white-space: nowrap; /* Prevents individual words from breaking awkwardly */
+        }
+        }
     </style>
 </head>
 <body>
@@ -1629,8 +1649,8 @@
             <a href="/" class="logo-block">
                 <img src="/images/AWAlogo.webp" alt="AWA Logo" class="logo-img">
                 <div class="logo-text-group">
-                <div class="logo-title" style="text-align: center;">Action Whitewater</div>
-                <div class="logo-title" style="text-align: center;">Adventures</div>
+                    <div class="logo-title" style="text-align: center;">Action Whitewater</div>
+                    <div class="logo-title" style="text-align: center;">Adventures</div>
                 </div>
             </a>
             
